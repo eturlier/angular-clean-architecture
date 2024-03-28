@@ -1,0 +1,31 @@
+<div *ngIf="menu() && menu().length > 0" class="side-menu-wrapper">
+    <div class="side-menu" id="side-menu">
+        @for (menuItem of menu(); track menuItem.name) {
+            <ul class="root">
+                <li>
+                    <div class="link" [class.active]="isActive(menuItem)">
+                        <span
+                            *ngIf="menuItem.icon"
+                            (click)="clickOnItem(menuItem)"
+                            (keyup)="handleKeyUp($event, menuItem)"
+                            class="menu-icon mgc_{{ menuItem.icon }}_{{
+                                isActive(menuItem) ? 'fill' : 'line'
+                            }}"
+                            tabindex="0"
+                        ></span>
+                        <a
+                            [routerLink]="[menuItem.path]"
+                            id="{{ menuItem.name }}"
+                        >
+                            {{
+                                menuItem.code_trad_label
+                                    ? (menuItem.code_trad_label | translate)
+                                    : ''
+                            }}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        }
+    </div>
+</div>

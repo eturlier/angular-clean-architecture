@@ -1,0 +1,23 @@
+import { HttpClient } from '@angular/common/http';
+import { UserClient } from '@core/user/domain/clients/user.interface.client';
+import { HttpUserClient } from '@core/user/gateways/http/http-user.client';
+import { MockUserClient } from '@core/user/gateways/mocks/mock-user.client';
+import { mockedUser1 } from '@core/user/gateways/mocks/mocks-user';
+import { environment } from '@environments/environment';
+
+/**
+ * Factory pour créer le manipulateur de données
+ * Cette class permet de pouvoir configurer la manière dont seront manipulée les données selon l'environnement d'exécution
+ * En mode mock pour les tests ou le développement par exemple soit en mode classique via les api.
+ */
+export class UserFactory {
+    static getClient(http: HttpClient): UserClient {
+        switch (environment.mode) {
+            case 'mock': // Version mockée utilisée uniquement si l'on est en mode mock ('npm run start:mock')
+                // [TODO] A modifier pour utiliser les mocks
+                return new MockUserClient([mockedUser1]);
+            default:
+                return new HttpUserClient(http);
+        }
+    }
+}

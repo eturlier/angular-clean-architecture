@@ -1,0 +1,29 @@
+{
+  "name": "custom-schematics",
+  "version": "0.0.0",
+  "description": "Utils schematics for clean architecture",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:watch": "tsc -p tsconfig.json -w",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "Elodie TURLIER",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^17.3.0",
+    "@angular-devkit/schematics": "^17.3.0",
+    "typescript": "~5.4.2"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^18.18.0",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "jasmine": "^5.0.0"
+  }
+}

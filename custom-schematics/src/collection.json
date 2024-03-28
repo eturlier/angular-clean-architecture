@@ -1,0 +1,10 @@
+{
+    "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+    "schematics": {
+        "generate-core-feature": {
+            "description": "Schematic to generate files and folder in src/core for a new feature.",
+            "factory": "./generate-core-feature/index#generateCoreFeature",
+            "schema": "./generate-core-feature/schema.json"
+        }
+    }
+}
