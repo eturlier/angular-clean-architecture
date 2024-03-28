@@ -1,0 +1,19 @@
+<div class="header">
+    <div
+        #logo
+        *ngIf="logoUrl()"
+        [ngStyle]="{ 'background-image': 'url(' + logoUrl() + ')' }"
+        class="logo"
+    ></div>
+    <div class="header-content">
+        <div class="blank middle">
+            <ng-content select="[middle]"></ng-content>
+        </div>
+        <div class="tray">
+            <ng-content select="[tray]"></ng-content>
+        </div>
+        <div class="user-actions">
+            <div *ngIf="user()" class="actions">USER</div>
+        </div>
+    </div>
+</div>

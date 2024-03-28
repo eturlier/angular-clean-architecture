@@ -1,0 +1,15 @@
+<p>Liste:</p>
+<div>
+    @if (users$() && users$().length > 0) {
+        <div>
+            @for (user of users$(); track user.id) {
+                <h1>
+                    {{ 'USER.TITLE' | translate }} {{ user?.name }} -
+                    {{ user?.id }}
+                </h1>
+            }
+        </div>
+    } @else {
+        <p>{{ 'USER.NOT_FOUND' | translate }}</p>
+    }
+</div>

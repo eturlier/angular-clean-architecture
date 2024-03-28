@@ -1,0 +1,12 @@
+[
+    {
+        "code_trad_label": "HOME.MENU",
+        "name": "home",
+        "path": "/home"
+    },
+    {
+        "code_trad_label": "USER.MENU",
+        "name": "user",
+        "path": "/user"
+    }
+]

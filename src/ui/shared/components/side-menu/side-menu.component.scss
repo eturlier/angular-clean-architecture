@@ -1,0 +1,59 @@
+:host {
+    .side-menu-wrapper {
+        width: var(--side-menu-width);
+        height: 100vh;
+        background: var(--background-base-primary, #fff);
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        word-wrap: break-word;
+
+        .side-menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            position: relative;
+            width: 100%;
+            flex: 1 1 auto;
+            gap: 25px;
+
+            ul {
+                list-style: none;
+                user-select: none;
+                padding: 0;
+                margin: 0;
+                transition: all ease 100ms;
+                position: relative;
+
+                .link {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 4px;
+                    line-height: 20px;
+                    font-weight: 500;
+                    text-align: center;
+                    .menu-icon {
+                        display: flex;
+                        padding: 4px 16px;
+                        justify-content: center;
+                        align-items: center;
+                        &::before {
+                            font-size: 30px;
+                        }
+                        cursor: pointer;
+                    }
+                    &.active {
+                        .menu-icon {
+                            background-color: var(
+                                --background-color-menu-icon,
+                                --blue-lighter
+                            );
+                            border-radius: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

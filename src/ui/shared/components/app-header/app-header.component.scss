@@ -1,0 +1,32 @@
+:host {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-self: stretch;
+    flex: 0 1 auto;
+    width: 100vw;
+    height: var(--header-height);
+    background: var(--background-base-primary, #fff);
+
+    .header {
+        flex: 1 1 auto;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        height: var(--header-height);
+
+        .logo {
+            background-repeat: no-repeat;
+            width: 100px;
+            background-size: contain;
+            height: 100%;
+            padding: 10px 5px;
+            background-position: center center;
+            background-origin: content-box;
+        }
+
+        .header-content {
+            padding: 10px 44px;
+        }
+    }
+}

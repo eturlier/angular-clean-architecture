@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "GenerateCoreFeatureSchematics",
+    "title": "Generate Core Feature Schematics",
+    "description": "Schematics for generating a new core feature in src/core.",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the core feature",
+            "minLength": 1,
+            "x-prompt": "What is your core feature name ?"
+        }
+    },
+    "required": ["name"]
+}

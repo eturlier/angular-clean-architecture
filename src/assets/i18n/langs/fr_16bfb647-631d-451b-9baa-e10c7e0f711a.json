@@ -1,0 +1,11 @@
+{
+   "HOME": {
+      "MENU": "Acceuil",
+      "TITLE": "Acceuil"
+   },
+   "USER": {
+      "MENU": "Liste des utilisateurs",
+      "TITLE": "Utilisateurs",
+      "NOT_FOUND": "Aucun utilisateur"
+   }
+}
