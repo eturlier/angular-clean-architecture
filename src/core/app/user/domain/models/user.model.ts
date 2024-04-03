@@ -1,11 +1,11 @@
 import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
 
 export class User extends BaseEntity {
-    private _name: string;
-
-    constructor(obj: unknown) {
-        super(obj);
-        this._name = (obj as { name: string })?.name;
+    constructor(
+        _json: { [key: string]: unknown },
+        private _name: string
+    ) {
+        super(_json);
     }
 
     get name(): string {

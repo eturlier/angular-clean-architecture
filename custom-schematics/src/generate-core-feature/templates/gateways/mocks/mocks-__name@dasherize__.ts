@@ -7,5 +7,5 @@ import { <%= classify(name) %>Builder } from '@core/<%= dasherize(name) %>/use-c
  */
 
 export const mocked<%= classify(name) %>1: <%= classify(name) %> = new <%= classify(name) %>Builder()
-    .withObj({ id: '1' })
+    .withJsonObj({ id: '1' })
     .build();

@@ -33,13 +33,11 @@
             "@ui-pages/*": ["./src/ui/pages/*"],
             // Paths concernant le core (logique métier)
             "@core/*": ["./src/core/app/*"],
-            "@core-user/*": ["./src/core/app/user/*"],
+            "@core-insurance-file/*": ["./src/core/app/insurance-file/*"],
             // Paths concernant les environments
             "@environments/*": ["./src/environments/*"],
-            // schematics
-            "custom-schematics": ["./dist/custom-schematics"],
-            "custom-schematics-lib": ["./dist/custom-schematics-lib"],
-            "schematics": ["./dist/schematics"]
+            // Paths concernant les utils
+            "@utils/*": ["./src/core/utils/*"],
         }
     },
     "angularCompilerOptions": {

@@ -38,7 +38,10 @@
               "src/styles.scss",
               "src/styles/main.scss"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/urijs/src/URI.js",
+                "node_modules/urijs/src/URITemplate.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -86,6 +89,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+              "proxyConfig": "proxy.config.json"
+          },
           "configurations": {
             "production": {
               "buildTarget": "angular-clean-architecture:build:production"
@@ -123,7 +129,10 @@
               "src/styles.scss",
               "src/styles/main.scss"
             ],
-            "scripts": []
+            "scripts": [
+                "node_modules/urijs/src/URI.js",
+                "node_modules/urijs/src/URITemplate.js"
+            ]
           }
         },
         "lint": {

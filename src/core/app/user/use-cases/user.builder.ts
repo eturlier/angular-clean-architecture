@@ -1,5 +1,5 @@
-import { User } from '@core/user/domain/models/user.model';
 import { AbstractBaseBuilder } from '@core/base/use-cases/base.abstract.builder';
+import { User } from '@core/user/domain/models/user.model';
 
 /**
  * La classe `UserBuilder` est un constructeur de l'objet `User`.
@@ -7,7 +7,15 @@ import { AbstractBaseBuilder } from '@core/base/use-cases/base.abstract.builder'
  * Les méthodes communes sont déjà définies dans `AbstractBaseBuilder`.
  */
 export class UserBuilder extends AbstractBaseBuilder<User> {
-    constructor() {
-        super((obj: unknown) => new User(obj));
+    private _name: string = '';
+
+    public override withJsonObj(json: { [key: string]: unknown }): UserBuilder {
+        this._json = json;
+        this._name = json['name'] as string;
+        return this;
+    }
+
+    public build(): User {
+        return new User(this._json, this._name);
     }
 }

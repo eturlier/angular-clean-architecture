@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { AbstractHttpBaseClient } from '@core/base/gateways/http/http-base.abstract..client';
+import { AbstractHttpBaseClient } from '@core/base/gateways/http/http-base.abstract.client';
 import { <%= classify(name) %>Client } from '@core/<%= dasherize(name) %>/domain/clients/<%= dasherize(name) %>.interface.client';
 import { <%= classify(name) %> } from '@core/<%= dasherize(name) %>/domain/models/<%= dasherize(name) %>.model';
 import { Observable } from 'rxjs';

@@ -1,4 +1,10 @@
 {
+    "NOTIFICATION": {
+        "info": "Information",
+        "success": "Success",
+        "warning": "Warning",
+        "danger": "Erreur"
+    },
     "HOME": {
         "MENU": "Acceuil",
         "TITLE": "Acceuil"

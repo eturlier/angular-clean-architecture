@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { AbstractHttpBaseClient } from '@core/base/gateways/http/http-base.abstract..client';
+import { BaseEntityDTO } from '@core/base/domain/models/base-entity-DTO.model';
+import { AbstractHttpBaseClient } from '@core/base/gateways/http/http-base.abstract.client';
 import { UserClient } from '@core/user/domain/clients/user.interface.client';
 import { User } from '@core/user/domain/models/user.model';
+import { UserMapper } from '@core/user/gateways/http/http-user.mapper';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 /**
  * La classe `HttpUserClient` est une implémentation de l'interface `UserLoader` qui utilise le protocole HTTP pour charger les entités.
@@ -11,18 +13,23 @@ export class HttpUserClient
     extends AbstractHttpBaseClient<User>
     implements UserClient
 {
-    constructor(protected override http: HttpClient) {
-        super(http, 'user');
-    }
-
     /**
      * La méthode `all` est utilisée pour récupérer tous les entités.
      * Dans cette implémentation http, elle fait un appel au serveur et retourne l'Observable reçu ou un observable de tableau vide avec une erreur.
      * @returns {Observable<User[]>} Un Observable qui émet un tableau vide ou contenant tous les entités.
      */
     all(): Observable<User[]> {
-        /* [TODO] Implémentation + gestion message d'erreur */
-        throw new Error('Methode "all" not implemented');
+        return this._get<BaseEntityDTO[]>('users').pipe(
+            map(response => {
+                if (response) {
+                    return response.map((obj: BaseEntityDTO) =>
+                        UserMapper.mapTo(obj as BaseEntityDTO)
+                    );
+                } else {
+                    return [];
+                }
+            })
+        );
     }
 
     /**
@@ -32,7 +39,8 @@ export class HttpUserClient
      * @returns {Observable<User>} Un Observable qui émet un l'entité récupéré.
      */
     get(id: string): Observable<User> {
-        /* [TODO] Implémentation + gestion message d'erreur */
-        throw new Error('Methode "get(' + id + ')" not implemented');
+        return this._get<BaseEntityDTO>('user', id).pipe(
+            map<BaseEntityDTO, User>(file => UserMapper.mapTo(file))
+        );
     }
 }

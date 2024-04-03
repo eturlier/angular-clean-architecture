@@ -128,14 +128,9 @@ Pour pouvoir manipuler les données, il faudra implémenter le provider suivant 
 ```sh
 providers: [
     {
-      provide: FeatureHandler,
-      useFactory: (
-        http: HttpClient
-      ) =>
-        new FeatureHandler(
-          FeatureFactory.client(http)
-        ),
-      deps: [HttpClient],
+        provide: FeatureHandler,
+        useFactory: () =>
+            new FeatureHandler(FeatureFactory.getClient()),
     },
     ...
   ],
