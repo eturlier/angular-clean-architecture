@@ -1,20 +1,18 @@
 import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
 
 /**
- * La classe abstraite `AbstractBaseBuilder` permet d'avoir un constructeur de l'objet `T extends BaseEntity` avec des méthodes partagées.
+ * La classe `AbstractBaseBuilder` permet d'avoir un constructeur de l'objet `T extends BaseEntity` avec un simple object json.
  * Elle utilise le pattern Builder pour créer des instances de `T extends BaseEntity`.
  */
 export abstract class AbstractBaseBuilder<T extends BaseEntity> {
-    private _obj: unknown;
+    protected _json: { [key: string]: unknown } = {};
 
-    constructor(private factory: (object: unknown) => T) {}
-
-    public withObj(obj: unknown): AbstractBaseBuilder<T> {
-        this._obj = obj;
+    public withJsonObj(json: {
+        [key: string]: unknown;
+    }): AbstractBaseBuilder<T> {
+        this._json = json;
         return this;
     }
 
-    public build(): T {
-        return this.factory(this._obj);
-    }
+    abstract build(): T;
 }

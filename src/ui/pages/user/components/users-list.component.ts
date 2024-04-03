@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import {
     ChangeDetectionStrategy,
     Component,
@@ -20,9 +20,7 @@ import { TranslateModule } from '@ngx-translate/core';
     providers: [
         {
             provide: UserHandler,
-            useFactory: (http: HttpClient) =>
-                new UserHandler(UserFactory.getClient(http)),
-            deps: [HttpClient],
+            useFactory: () => new UserHandler(UserFactory.getClient()),
         },
     ],
     templateUrl: './users-list.component.html',

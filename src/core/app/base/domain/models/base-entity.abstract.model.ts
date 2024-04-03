@@ -2,13 +2,13 @@
  * Class permettant de définir les information partagé pour une entité.
  */
 export abstract class BaseEntity {
-    private _id: string;
+    constructor(private _json: { [key: string]: unknown }) {}
 
-    constructor(private _obj: unknown) {
-        this._id = (_obj as { id: string })?.id;
+    get json(): { [key: string]: unknown } {
+        return this._json;
     }
 
     get id(): string {
-        return this._id;
+        return this._json['id'] as string;
     }
 }

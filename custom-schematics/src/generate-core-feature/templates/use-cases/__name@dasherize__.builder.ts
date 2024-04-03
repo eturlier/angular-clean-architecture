@@ -7,7 +7,7 @@ import { AbstractBaseBuilder } from '@core/base/use-cases/base.abstract.builder'
  * Les méthodes communes sont déjà définies dans `AbstractBaseBuilder`.
  */
 export class <%= classify(name) %>Builder extends AbstractBaseBuilder<<%= classify(name) %>>{
-    constructor() {
-        super((obj: unknown) => new <%= classify(name) %>(obj));
+    public build(): <%= classify(name) %> {
+        return new <%= classify(name) %>(this._json);
     }
 }

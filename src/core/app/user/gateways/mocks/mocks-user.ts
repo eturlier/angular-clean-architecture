@@ -7,13 +7,13 @@ import { UserBuilder } from '@core/user/use-cases/user.builder';
  */
 
 export const mockedUser1: User = new UserBuilder()
-    .withObj({ id: '1', name: 'User 1' })
+    .withJsonObj({ id: '1', name: 'User 1' })
     .build();
 
 export const mockedUser2: User = new UserBuilder()
-    .withObj({ id: '2', name: 'User 2' })
+    .withJsonObj({ id: '2', name: 'User 2' })
     .build();
 
 export const mockedUser3: User = new UserBuilder()
-    .withObj({ id: '3', name: 'User 3' })
+    .withJsonObj({ id: '3', name: 'User 3' })
     .build();

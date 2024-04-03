@@ -4,9 +4,9 @@ import localeFrExtra from '@angular/common/locales/extra/fr';
 import localeFr from '@angular/common/locales/fr';
 import { importProvidersFrom } from '@angular/core';
 import {
-        TranslateLoader,
-        TranslateModule,
-        TranslateModuleConfig,
+    TranslateLoader,
+    TranslateModule,
+    TranslateModuleConfig,
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
@@ -14,7 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 // AoT requires an exported function for factories
-const TRANSLATION_GUID = '16bfb647-631d-451b-9baa-e10c7e0f711a';
+const TRANSLATION_GUID = '5e609b73-8511-47ad-bf98-b55707b19f20';
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(
         http,

@@ -12,7 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: var(--application-background-color, #dfdfdf);
-    font-family: var(--base-font, "Roboto Regular");
+    font-family: var(--base-font, 'Roboto Regular');
     overflow: hidden;
 }
 a {

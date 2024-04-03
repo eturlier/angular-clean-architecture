@@ -2,10 +2,10 @@
 <div>
     @if (users$() && users$().length > 0) {
         <div>
-            @for (user of users$(); track user.id) {
+            @for (user of users$(); track user.name) {
                 <h1>
                     {{ 'USER.TITLE' | translate }} {{ user?.name }} -
-                    {{ user?.id }}
+                    {{ user?.name }}
                 </h1>
             }
         </div>
