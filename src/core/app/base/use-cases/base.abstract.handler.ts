@@ -1,21 +1,25 @@
 import { AbstractBaseClient } from '@core/base/domain/clients/base.interface.client';
 import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
+import { FilterEvent } from '@core/base/domain/models/filter-event.model';
 import { Observable } from 'rxjs';
 
 /**
  * La classe abstraite `AbstractBaseHandler` permet d'avoir les méthodes utilisées par un gestionnaire de données
  * Elle définit les cas d'utilisation partagés pour les entités.
  */
-export abstract class AbstractBaseHandler<T extends BaseEntity> {
-    constructor(private _client: AbstractBaseClient<T>) {}
+export abstract class AbstractBaseHandler<
+    T extends BaseEntity,
+    F extends FilterEvent,
+> {
+    constructor(protected _client: AbstractBaseClient<T, F>) {}
 
     /**
      * La méthode `all` est utilisée pour récupérer toutes les entités de type T extends BaseEntity.
      * Elle appelle le client correspondant pour récupérer toutes les entités de type T extends BaseEntity ou afficher l'erreure correspondante.
      * @returns {Observable<T[]>} Un Observable qui émet un tableau vide ou remplis d'entités.
      */
-    public all(): Observable<T[]> {
-        return this._client.all();
+    public all(filters?: F): Observable<T[]> {
+        return this._client.all(filters);
     }
 
     /**
@@ -26,5 +30,35 @@ export abstract class AbstractBaseHandler<T extends BaseEntity> {
      */
     public get(id: string): Observable<T> {
         return this._client.get(id);
+    }
+
+    /**
+     * La méthode `update` est utilisée pour mettre à jour un élément.
+     * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
+     * @param {User} user L'élément à mettre à jour.
+     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
+     */
+    public create(user: T): Observable<T> {
+        return this._client.create(user);
+    }
+
+    /**
+     * La méthode `update` est utilisée pour mettre à jour un élément.
+     * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
+     * @param {User} user L'élément à mettre à jour.
+     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
+     */
+    public update(user: T): Observable<T> {
+        return this._client.update(user);
+    }
+
+    /**
+     * La méthode `delete` est utilisée pour supprimer un élément.
+     * Elle retourne un Observable avec un message de succès ou une erreur si la suppression a échoué.
+     * @param {string} id Id de l'élément à supprimer.
+     * @returns {Observable<void>}
+     */
+    public delete(id: string): Observable<void> {
+        return this._client.delete(id);
     }
 }
