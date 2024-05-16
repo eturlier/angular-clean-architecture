@@ -6,7 +6,7 @@ import { AbstractBaseBuilder } from '@core/base/use-cases/base.abstract.builder'
  * Elle utilise le pattern Builder pour créer des instances de `<%= classify(name) %>`.
  * Les méthodes communes sont déjà définies dans `AbstractBaseBuilder`.
  */
-export class <%= classify(name) %>Builder extends AbstractBaseBuilder<<%= classify(name) %>>{
+export class <%= classify(name) %>Builder extends AbstractBaseBuilder<<%= classify(name) %>> {
     public build(): <%= classify(name) %> {
         return new <%= classify(name) %>(this._json);
     }

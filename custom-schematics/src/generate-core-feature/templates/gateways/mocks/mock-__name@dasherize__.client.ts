@@ -1,4 +1,5 @@
 import { <%= classify(name) %> } from '@core/<%= dasherize(name) %>/domain/models/<%= dasherize(name) %>.model';
+import { FilterEvent } from '@core/base/domain/models/filter-event.model';
 import { AbstractMockBaseClient } from '@core/base/gateways/mocks/mock-base.abstract.client';
 import { <%= classify(name) %>Client } from '@core/<%= dasherize(name) %>/domain/clients/<%= dasherize(name) %>.interface.client';
 
@@ -8,5 +9,5 @@ import { <%= classify(name) %>Client } from '@core/<%= dasherize(name) %>/domain
  * Les méthodes communes sont déjà définies dans `AbstractMockBaseClient`.
  */
 export class Mock<%= classify(name) %>Client
-    extends AbstractMockBaseClient<<%= classify(name) %>>
+    extends AbstractMockBaseClient<<%= classify(name) %>, FilterEvent>
     implements <%= classify(name) %>Client {}

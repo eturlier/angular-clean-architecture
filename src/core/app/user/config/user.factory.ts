@@ -4,6 +4,8 @@ import { MockUserClient } from '@core/user/gateways/mocks/mock-user.client';
 import { mockedUser1 } from '@core/user/gateways/mocks/mocks-user';
 import { environment } from '@environments/environment';
 
+const mocks = [mockedUser1];
+
 /**
  * Factory pour créer le manipulateur de données
  * Cette class permet de pouvoir configurer la manière dont seront manipulée les données selon l'environnement d'exécution
@@ -14,7 +16,7 @@ export class UserFactory {
         switch (environment.mode) {
             case 'mock': // Version mockée utilisée uniquement si l'on est en mode mock ('npm run start:mock')
                 // [TODO] A modifier pour utiliser les mocks
-                return new MockUserClient([mockedUser1]);
+                return new MockUserClient(mocks);
             default:
                 return new HttpUserClient();
         }
