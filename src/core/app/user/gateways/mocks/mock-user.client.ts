@@ -1,4 +1,5 @@
 import { User } from '@core/user/domain/models/user.model';
+import { FilterEvent } from '@core/base/domain/models/filter-event.model';
 import { AbstractMockBaseClient } from '@core/base/gateways/mocks/mock-base.abstract.client';
 import { UserClient } from '@core/user/domain/clients/user.interface.client';
 
@@ -8,5 +9,5 @@ import { UserClient } from '@core/user/domain/clients/user.interface.client';
  * Les méthodes communes sont déjà définies dans `AbstractMockBaseClient`.
  */
 export class MockUserClient
-    extends AbstractMockBaseClient<User>
+    extends AbstractMockBaseClient<User, FilterEvent>
     implements UserClient {}

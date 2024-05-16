@@ -11,6 +11,11 @@ const featuresRoutes: Routes = [
         loadChildren: () =>
             import('@core/user/config/user.routes').then(r => r.user_routes),
     },
+    {
+        path: 'user',
+        loadChildren: () =>
+            import('@core/user/config/user.routes').then(r => r.user_routes),
+    },
 ];
 
 export const routes: Routes = [

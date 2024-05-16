@@ -14,7 +14,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 registerLocaleData(localeFr, 'fr-FR', localeFrExtra);
 
 // AoT requires an exported function for factories
-const TRANSLATION_GUID = '5e609b73-8511-47ad-bf98-b55707b19f20';
+const TRANSLATION_GUID = '1bd1fbb6-4d9d-46eb-8216-cdbe840fab4f';
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(
         http,

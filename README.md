@@ -1,6 +1,16 @@
 # Angular Clean Architecture
 
-Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+Ce projet a été généré avec [Angular CLI](https://github.com/angular/angular-cli) version `17.2.3`
+
+Il faut avoir la version de node.js `^18.13.0 || ^20.9.0`
+
+Dans le cas ou on gère les version de node avec nvm, il faut à minima avoir la version `1.1.11`
+
+Et avoir installé @angular/cli en local
+
+```sh
+npm install -g @angular/cli
+```
 
 ## Initialisation du projet
 
@@ -95,7 +105,15 @@ Cela va générer un nouveau dossier dans la partie `src/core/` avec le nom de l
 
 A l'intérieur de ce dossier on retrouvera l'architecture ci-dessus avec les fichiers généré avec le code par défault ainsi que l'ajout des routes de cette nouvelle feature dans la configuration des routes de l'appli `src/config/app.routes.ts`.
 
-Il ne reste plus qu'à implémenter le code et à créer l'ui correspondante.
+Il ne reste plus qu'à implémenter le code dans:
+
+-   `src/core/FEATURE_NAME/domain/models/FEATURE_NAME.model.ts` afin de spécifier le modèle de l'entitée
+-   `src/core/FEATURE_NAME/use-cases/FEATURE_NAME.builder.ts` afin de pouvoir initialiser les informations du builder permettant de créer une entitée
+-   `src/core/FEATURE_NAME/gateways/mocks/mocks-FEATURE_NAME.ts` afin de créer les mocks que l'on souhaite utiliser tanr que l'on a pas l'accès à l'API
+-   `src/core/FEATURE_NAME/config/FEATURE_NAME.factory.ts` afin de renseigner les mocks créer ci-dessus
+-   `src/core/FEATURE_NAME/gateways/http/http-FEATURE_NAME.client.ts` afin d'implémenter les méthodes d'appel à aux api
+
+Et il faudra également créer l'ui correspondante et à renseigner les routes si besoin dans `src/core/FEATURE_NAME/config/FEATURE_NAME.routes.ts`.
 
 ### Fonctionnement du mode MOCK
 

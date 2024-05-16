@@ -1,4 +1,4 @@
-import { BaseSchema } from '../schema.model.';
+import { BaseSchema } from "../schema.model";
 
 export interface GenerateCoreFeatureSchema extends BaseSchema {
     name: string;
