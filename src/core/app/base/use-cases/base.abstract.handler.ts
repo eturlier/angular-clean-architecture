@@ -1,6 +1,7 @@
 import { AbstractBaseClient } from '@core/base/domain/clients/base.interface.client';
 import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
 import { FilterEvent } from '@core/base/domain/models/filter-event.model';
+import { KeyValueObject } from '@ui/shared/models/utils.model';
 import { Observable } from 'rxjs';
 
 /**
@@ -26,39 +27,41 @@ export abstract class AbstractBaseHandler<
      * La méthode `get` est utilisée pour récupérer une entité avec l'ID passé en param.
      * Elle appelle le client correspondant pour récupérer une entité ou afficher l'erreure correspondante.
      * @param {strind} id L'ID de l'entité à récupérer.
+     * @param {KeyValueObject} options Les paramètres additionnels.
      * @returns {Observable<T>} Un Observable qui émet l'entité récupéré.
      */
-    public get(id: string): Observable<T> {
-        return this._client.get(id);
+    public get(id: string, options?: KeyValueObject): Observable<T> {
+        return this._client.get(id, options);
     }
 
     /**
      * La méthode `update` est utilisée pour mettre à jour un élément.
      * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
-     * @param {User} user L'élément à mettre à jour.
-     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
+     * @param {T} Entity L'élément à mettre à jour.
+     * @returns {Observable<T | void>} Un Observable qui émet l'élément mis à jour ou rien.
      */
-    public create(user: T): Observable<T> {
-        return this._client.create(user);
+    public create(entity: T): Observable<T | void> {
+        return this._client.create(entity);
     }
 
     /**
      * La méthode `update` est utilisée pour mettre à jour un élément.
      * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
-     * @param {User} user L'élément à mettre à jour.
-     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
+     * @param {T} entity L'élément à mettre à jour.
+     * @returns {Observable<T | void>} Un Observable qui émet l'élément mis à jour ou rien.
      */
-    public update(user: T): Observable<T> {
-        return this._client.update(user);
+    public update(entity: T): Observable<T | void> {
+        return this._client.update(entity);
     }
 
     /**
      * La méthode `delete` est utilisée pour supprimer un élément.
      * Elle retourne un Observable avec un message de succès ou une erreur si la suppression a échoué.
      * @param {string} id Id de l'élément à supprimer.
+     * @param {T} entity  Facultatif: L'entité à supprimer (utilisé dans le cas des entité avec un State).
      * @returns {Observable<void>}
      */
-    public delete(id: string): Observable<void> {
-        return this._client.delete(id);
+    public delete(id: string, entity?: T): Observable<void> {
+        return this._client.delete(id, entity);
     }
 }

@@ -1,6 +1,5 @@
-import { HttpClient, HttpContext } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
 import { HttpOptions } from '@core/base/domain/models/http-options.model';
 import { CustomHttpParams } from '@core/base/gateways/http/custom-http-params';
 import { Observable } from 'rxjs';
@@ -9,7 +8,7 @@ import URI from 'urijs';
 /**
  * La classe abstraite `AbstractHttpBaseClient` contient les méthodes partagées par les clients (services appelant les api) utilisant le protocole HTTP.
  */
-export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
+export abstract class AbstractHttpBaseClient<T> {
     private readonly http = inject(HttpClient);
 
     protected basePathApi: string | undefined;
@@ -18,9 +17,9 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
 
     /**
      * Création d'une URL à partir d'un chemin et de paramètres
-     * @param path
-     * @param parameters
-     * @returns
+     * @param {path} path Chemin de l'URL
+     * @param {parameters} parameters Paramètres de l'URL
+     * @returns {string} URL complète
      */
     public makeURL(path: string, parameters?: string): string {
         let url = ConfigUrl.makeURL(
@@ -36,6 +35,9 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
 
     /**
      * Crée un objet de paramètres pour les url à partir d'un nom et d'une valeur
+     * @param {string} name Nom du paramètre
+     * @param {string} value Valeur du paramètre
+     * @returns {CustomHttpParams}
      */
     protected _makeSimpleParam(name: string, value: string): CustomHttpParams {
         const params = new CustomHttpParams().setValue(name, value);
@@ -44,9 +46,15 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
 
     /**
      * Crée un objet RequestOptions initialisé
+     * @param {CustomHttpParams} httpParams Tableau de paramètres
+     * @param {boolean} withCredentials Indique si on veut envoyer les cookies (par défaut true)
+     * @param {boolean} withResponse Indique si on veut récupérer la réponse entière (par défaut false)
+     * @param {string} responseType Type de réponse attendue (par défaut 'json')
+     * @returns {HttpOptions}
      */
     protected _getOptions(
         httpParams?: CustomHttpParams,
+        headers?: HttpHeaders,
         withCredentials: boolean = true,
         withResponse: boolean = false,
         responseType: string = 'json'
@@ -59,11 +67,17 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
             observe: withResponse ? 'response' : 'body',
         };
 
+        if (headers) {
+            options.headers = headers;
+        }
+
         return options;
     }
 
     /**
      * Url complète à partir de la base du service transmise au constructeur et de la config générale.
+     * @param {string} service Nom du service à appeler
+     * @returns {string} URL complète
      */
     protected _getURL(service: string): string {
         return this.makeURL(service);
@@ -74,18 +88,27 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {string} service Le nom du service a appeler
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _get<T>(
+    protected _get(
         service: string,
-        param?: CustomHttpParams | string
+        param?: CustomHttpParams | string,
+        headers?: HttpHeaders,
+        responseType?: string
     ): Observable<T> {
         const httpParams: CustomHttpParams | undefined = param
             ? typeof param === 'string'
                 ? this._makeSimpleParam('id', param)
                 : param
             : undefined;
+
         return this.http.get<T>(
             this._getURL(service),
-            this._getOptions(httpParams) as object
+            this._getOptions(
+                httpParams,
+                headers,
+                true,
+                false,
+                responseType
+            ) as object
         );
     }
 
@@ -95,10 +118,11 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {unknown} data Les données à envoyer
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _post<T>(
+    protected _post(
         service: string,
         data: unknown,
-        param?: CustomHttpParams | string
+        param?: CustomHttpParams | string,
+        headers?: HttpHeaders
     ): Observable<T> {
         const httpParams: CustomHttpParams | undefined = param
             ? typeof param === 'string'
@@ -108,7 +132,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
         return this.http.post<T>(
             this._getURL(service),
             data,
-            this._getOptions(httpParams) as object
+            this._getOptions(httpParams, headers) as object
         );
     }
 
@@ -118,7 +142,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {unknown} data Les données à envoyer
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _put<T>(
+    protected _put(
         service: string,
         data: unknown,
         param?: CustomHttpParams | string
@@ -128,6 +152,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
                 ? this._makeSimpleParam('id', param)
                 : param
             : undefined;
+
         return this.http.put<T>(
             this._getURL(service),
             data,
@@ -140,7 +165,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {string} service Le nom du service a appeler
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _delete<T>(
+    protected _delete(
         service: string,
         param?: CustomHttpParams | string
     ): Observable<T> {
@@ -154,19 +179,6 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
             this._getOptions(httpParams) as object
         );
     }
-
-    /**
-     * La méthode `all` est utilisée pour récupérer toutes les entités de type T.
-     * @returns {Observable<T[]>} Un Observable qui émet un tableau vide ou contenant toutes les entités.
-     */
-    protected abstract all(): Observable<T[]>;
-
-    /**
-     * La méthode `get` est utilisée pour récupérer une entité avec l'ID passé en param.
-     * @param {string} id  L'ID de l'entités à récupérer.
-     * @returns {Observable<T>} Un Observable qui émet un le dossier récupéré.
-     */
-    protected abstract get(id: string): Observable<T>;
 }
 
 class ConfigUrl {

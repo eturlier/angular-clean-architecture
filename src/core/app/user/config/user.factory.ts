@@ -1,10 +1,10 @@
 import { UserClient } from '@core/user/domain/clients/user.interface.client';
 import { HttpUserClient } from '@core/user/gateways/http/http-user.client';
 import { MockUserClient } from '@core/user/gateways/mocks/mock-user.client';
-import { mockedUser1 } from '@core/user/gateways/mocks/mocks-user';
+import { mockedUser1, mockedUser2 } from '@core/user/gateways/mocks/mocks-user';
 import { environment } from '@environments/environment';
 
-const mocks = [mockedUser1];
+const mocks = [mockedUser1, mockedUser2];
 
 /**
  * Factory pour créer le manipulateur de données

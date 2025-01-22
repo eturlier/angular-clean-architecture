@@ -7,6 +7,7 @@ import {
     apply,
     callRule,
     chain,
+    filter,
     mergeWith,
     move,
     template,
@@ -40,7 +41,14 @@ export function generateCoreFeature(_options: GenerateCoreFeatureSchema): Rule {
                     _options.project = Object.keys(workspace.projects)[0];
                 }
 
-                const sourceTemplate = url('./templates');
+                let sourceTemplate = url('./templates');
+
+                // Si les routes ne sont pas activées, on enlève le template config/FEATURE_NAME.routes.ts
+                if (!_options.routes) {
+                    sourceTemplate = apply(sourceTemplate, [
+                        filter(path => !path.endsWith('.routes.ts')),
+                    ]);
+                }
 
                 // Création des fichiers à partir des templates et les mettre dans le dossier src/core/app/FEATURE_NAME
                 const sourceParametrizedTemplates = apply(sourceTemplate, [
@@ -51,10 +59,14 @@ export function generateCoreFeature(_options: GenerateCoreFeatureSchema): Rule {
                     move(`src/core/app/${strings.dasherize(_options.name)}`),
                 ]);
 
-                return chain([
-                    mergeWith(sourceParametrizedTemplates),
-                    addRouteToAppRoutes(_options.name),
-                ]);
+                if (_options.routes) {
+                    return chain([
+                        mergeWith(sourceParametrizedTemplates),
+                        addRouteToAppRoutes(_options.name),
+                    ]);
+                }
+
+                return mergeWith(sourceParametrizedTemplates);
             },
             tree,
             _context

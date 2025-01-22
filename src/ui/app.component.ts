@@ -22,7 +22,6 @@ import { NOTIFICATION_DURATION } from '@utils/constants';
         // Components
         SideMenuComponent,
         AppHeaderComponent,
-        SnackbarComponent,
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
