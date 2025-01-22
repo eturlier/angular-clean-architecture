@@ -15,7 +15,6 @@ export class UserFactory {
     static getClient(): UserClient {
         switch (environment.mode) {
             case 'mock': // Version mockée utilisée uniquement si l'on est en mode mock ('npm run start:mock')
-                // [TODO] A modifier pour utiliser les mocks
                 return new MockUserClient(mocks);
             default:
                 return new HttpUserClient();
