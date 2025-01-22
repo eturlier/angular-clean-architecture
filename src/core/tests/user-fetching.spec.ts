@@ -1,5 +1,5 @@
-import { User } from '@core-user/domain/models/user.model';
-import { UserHandler } from '@core-user/use-cases/user.handler';
+import { User } from '@core/user/domain/models/user.model';
+import { UserHandler } from '@core/user/use-cases/user.handler';
 import { UserClient } from '@core/user/domain/clients/user.interface.client';
 import { MockUserClient } from '@core/user/gateways/mocks/mock-user.client';
 import { mockedUser1, mockedUser2 } from '@core/user/gateways/mocks/mocks-user';

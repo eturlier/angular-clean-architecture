@@ -5,6 +5,8 @@ export class CustomHttpParams {
 
     /**
      * Le constructeur prend optionnellement un nom et un valeur pour une définition directe d'un paramètre.
+     * @param {string} name Nom du paramètre
+     * @param {string | number | boolean} value  Valeur du paramètre
      */
     constructor(name?: string, value?: string | number | boolean) {
         if (name != null) {
@@ -14,8 +16,8 @@ export class CustomHttpParams {
 
     /**
      * Ajoute un paramètre en utilisant toString. Le name et la valeur doivent exister.
-     * @param name Nom du paramètre
-     * @param value Valeur du paramètre (format string, number ou boolean, pour les dates, utiliser les fonctions correspondantes)
+     * @param {string} name Nom du paramètre
+     * @param {string | number | boolean} value Valeur du paramètre (format string, number ou boolean, pour les dates, utiliser les fonctions correspondantes)
      */
     public setValue(
         name: string,
@@ -27,6 +29,28 @@ export class CustomHttpParams {
         return this;
     }
 
+    /**
+     * Permets d'ajouter un paramètre de type array de string ou de number
+     * @param {string} name Nom du paramètre
+     * @param {unknown[]} value Valeur du paramètre
+     */
+    public setStringArrayValue(
+        name: string,
+        value: unknown[]
+    ): CustomHttpParams {
+        if (value !== null && name !== undefined) {
+            this.httpParams = this.httpParams.append(
+                name,
+                JSON.stringify(value)
+            );
+        }
+        return this;
+    }
+
+    /**
+     * Récupère les paramètres HTTP
+     * @returns {HttpParams}
+     */
     public getParams(): HttpParams {
         return this.httpParams;
     }

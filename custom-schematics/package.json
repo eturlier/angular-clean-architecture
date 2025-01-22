@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json -w",
-    "test": "npm run build && jasmine src/**/*_spec.js"
+    "test": "jest"
   },
   "keywords": [
     "schematics"
@@ -14,16 +14,17 @@
   "license": "MIT",
   "schematics": "./src/collection.json",
   "dependencies": {
-    "@angular-devkit/core": "^17.3.0",
-    "@angular-devkit/schematics": "^17.3.0",
-    "typescript": "~5.4.2"
+    "@angular-devkit/core": "19.0.6",
+    "@angular-devkit/schematics": "19.0.6",
+    "typescript": "5.5.4"
   },
   "devDependencies": {
-    "@types/jasmine": "~5.1.0",
-    "@types/node": "^18.18.0",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "eslint": "^8.57.0",
-    "jasmine": "^5.0.0"
+    "@types/node": "22.10.2",
+    "@angular-eslint/eslint-plugin": "19.0.2",
+    "@angular-eslint/template-parser": "19.0.2",
+    "eslint": "9.9.0",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.11",
+    "ts-jest": "^29.1.1"
   }
 }
