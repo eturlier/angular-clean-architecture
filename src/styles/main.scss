@@ -1,0 +1,21 @@
+@use './colors.scss';
+@use './layout.scss';
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--application-background-color, #dfdfdf);
+    font-family: var(--base-font, 'Roboto Regular');
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+    color: var(--link-color, #000);
+}

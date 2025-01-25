@@ -1,0 +1,31 @@
+:root {
+    --header-height: 75px;
+    --side-menu-width: 100px;
+
+    --base-font: 'Roboto';
+
+    --background-base-primary: #ffffff;
+
+    --application-background-color: #dfdfdf;
+
+    --background-color-menu-icon: var(--blue-lighter);
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: stretch;
+    flex: 1 1 auto;
+    overflow: hidden;
+    font-size: var(--font-size);
+    background: var(--application-background-color);
+    .layout-container {
+        padding: 20px 44px;
+        flex-shrink: 0;
+        width: 100%;
+        height: 100%;
+    }
+}

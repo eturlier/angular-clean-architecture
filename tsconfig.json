@@ -1,0 +1,46 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "./dist/out-tsc",
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "useDefineForClassFields": false,
+        "lib": ["ES2022", "dom"],
+        "resolveJsonModule": true,
+        "typeRoots": ["./node_modules/@types"],
+        "paths": {
+            // Path vers la configuration de l'application
+            "@config/*": ["./src/config/*"],
+            //Paths concernant l'ui (interaction avec l'utilisateur)
+            "@ui/*": ["./src/ui/*"],
+            "@ui-shared/*": ["./src/ui/shared/*"],
+            "@ui-pages/*": ["./src/ui/pages/*"],
+            // Paths concernant le core (logique métier)
+            "@core/*": ["./src/core/app/*"],
+            // Paths concernant les environments
+            "@environments/*": ["./src/environments/*"],
+            // Paths concernant les utils
+            "@utils/*": ["./src/core/utils/*"]
+        }
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

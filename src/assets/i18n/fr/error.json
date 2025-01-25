@@ -1,0 +1,10 @@
+{
+    "ERROR": {
+        "UNKNOW": "Une erreur inattendue est survenue.",
+        "400": "Nous avons rencontré un problème. Vérifiez votre saisie et réessayez.",
+        "401": "Vous devez vous connecter pour accéder à cette fonctionnalité.",
+        "403": "Désolé, vous n'êtes pas autorisé à effectuer cette action.",
+        "404": "Oops! Nous n'avons pas trouvé ce que vous cherchez.",
+        "500": "Nous sommes désolés, quelque chose s'est mal passé de notre côté. Veuillez réessayer plus tard."
+    }
+}

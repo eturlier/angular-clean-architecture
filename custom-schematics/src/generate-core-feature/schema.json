@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "$id": "GenerateCoreFeatureSchematics",
+    "title": "Generate Core Feature Schematics",
+    "description": "Schematics for generating a new core feature in src/core.",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the core feature",
+            "minLength": 1,
+            "x-prompt": "What is your core feature name ?"
+        },
+        "routes": {
+            "type": "boolean",
+            "description": "If true, the feature routes will be added to app.routes.ts",
+            "default": true,
+            "x-prompt": "Add feature routes to app.routes.ts ?"
+        }
+    },
+    "required": ["name"]
+}

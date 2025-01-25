@@ -1,0 +1,8 @@
+{
+    "USER": {
+        "MENU": "Liste des utilisateurs",
+        "TITLE": "Utilisateurs",
+        "ONE_TITLE": "Utilisateur",
+        "NOT_FOUND": "Aucun utilisateur"
+    }
+}
