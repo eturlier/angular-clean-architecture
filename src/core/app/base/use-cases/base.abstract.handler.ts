@@ -64,34 +64,4 @@ export abstract class AbstractBaseHandler<
     public delete(id: string, entity?: T): Observable<void> {
         return this._client.delete(id, entity);
     }
-
-    /**
-     * La méthode `update` est utilisée pour mettre à jour un élément.
-     * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
-     * @param {User} user L'élément à mettre à jour.
-     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
-     */
-    public create(user: T): Observable<T> {
-        return this._client.create(user);
-    }
-
-    /**
-     * La méthode `update` est utilisée pour mettre à jour un élément.
-     * Elle retourne un Observable avec l'élément mis à jour ou une erreur si la mise à jour a échoué.
-     * @param {User} user L'élément à mettre à jour.
-     * @returns {Observable<T>} Un Observable qui émet l'élément mis à jour.
-     */
-    public update(user: T): Observable<T> {
-        return this._client.update(user);
-    }
-
-    /**
-     * La méthode `delete` est utilisée pour supprimer un élément.
-     * Elle retourne un Observable avec un message de succès ou une erreur si la suppression a échoué.
-     * @param {string} id Id de l'élément à supprimer.
-     * @returns {Observable<void>}
-     */
-    public delete(id: string): Observable<void> {
-        return this._client.delete(id);
-    }
 }

@@ -8,12 +8,10 @@ import URI from 'urijs';
 /**
  * La classe abstraite `AbstractHttpBaseClient` contient les méthodes partagées par les clients (services appelant les api) utilisant le protocole HTTP.
  */
-export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
+export abstract class AbstractHttpBaseClient {
     private readonly http = inject(HttpClient);
 
-    protected basePathApi: string | undefined;
-
-    constructor() {}
+    protected abstract basePathApi: string | undefined;
 
     /**
      * Création d'une URL à partir d'un chemin et de paramètres
@@ -88,7 +86,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {string} service Le nom du service a appeler
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _get(
+    protected _get<T>(
         service: string,
         param?: CustomHttpParams | string,
         headers?: HttpHeaders,
@@ -118,7 +116,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
      * @param {unknown} data Les données à envoyer
      * @param {CustomHttpParams | string} param Tableau de paramètres (HttpParams) ou string donnant la valeur du paramètre ID
      */
-    protected _post(
+    protected _post<T>(
         service: string,
         data: unknown,
         param?: CustomHttpParams | string,
@@ -152,6 +150,7 @@ export abstract class AbstractHttpBaseClient<T extends BaseEntity> {
                 ? this._makeSimpleParam('id', param)
                 : param
             : undefined;
+
         return this.http.put<T>(
             this._getURL(service),
             data,
