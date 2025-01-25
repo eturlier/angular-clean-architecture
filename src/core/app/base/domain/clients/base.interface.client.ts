@@ -13,7 +13,6 @@ export abstract class AbstractBaseClient<
     T extends BaseEntity,
     F extends FilterEvent,
 > {
-
     /**
      * La méthode `all` est utilisée pour récupérer tous les éléments.
      * Elle doit retourner un Observable qui émet un tableau d'éléments.

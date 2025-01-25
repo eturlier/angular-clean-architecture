@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "npm run concat-translations && ng serve",
+    "start": "npm run concat-translations && ng serve --proxy-config proxy.config.json",
     "start:mock": "npm run concat-translations && ng serve --configuration=mock",
     "build": "npm run concat-translations && ng build",
     "watch": "npm run concat-translations && ng build --watch --configuration development",
