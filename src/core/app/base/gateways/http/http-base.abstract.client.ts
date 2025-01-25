@@ -1,5 +1,6 @@
 import { HttpClient, HttpContext, HttpHeaders } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { BaseEntity } from '@core/base/domain/models/base-entity.abstract.model';
 import { HttpOptions } from '@core/base/domain/models/http-options.model';
 import { CustomHttpParams } from '@core/base/gateways/http/custom-http-params';
 import { Observable } from 'rxjs';
